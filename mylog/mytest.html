@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<!--设置网页信息，负责对外通信-->
+<head>
+    <!--设置关键词-->
+    <meta name="keywords" content="汉服">
+    <!--广告位-->
+    <meta name="description" content="二货才要">
+    <meta charset="UTF-8">
+    <!--设置标题-->
+    <title>相册</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+
+        }
+
+        #wrap {
+
+            width: 1180px;
+            height: 790px;
+            border: 3px solid #12bac7;
+            margin: 0 auto;
+            padding: 10px;
+
+        }
+
+        body {
+            background: #eee;
+        }
+
+        #wrap ul {
+            list-style-type: none;
+            width: 100%;
+            height: 90%;
+            display: flex;
+
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #wrap ul li {
+
+            border: 1px solid #4c4c4c;
+            margin: 2px;
+            box-shadow: 0px 10px 2px #d2c3ee;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            border:1px solid #76737d;
+
+        }
+
+        #wrap ul li img {
+            display: block;
+
+            width: 288px;
+            height: 232px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+
+        }
+
+        #wrap .console {
+            margin: 0 auto;
+
+            width: 80%;
+            height: 10%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #wrap .console span {
+            display: block;
+
+            width: 95px;
+            height: 67px;;
+            background: url("./images/17.jpg") no-repeat;
+        }
+
+        #wrap .console span.prev {
+            background-position: 0 -73px;
+
+        }
+
+        #wrap .console span.next {
+            background-position: -38px -147px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+
+    <ul>
+        <li><img src="./images/1.jpg" alt="红" width="400" height="372"></li>
+        <li><img src="./images/2.jpg" alt="黄" width="640" height="769"></li>
+        <li><img src="./images/3.jpg" alt="蓝" width="600" height="900"></li>
+        <li><img src="./images/4.jpg" alt="绿" width="798" height="1200"></li>
+        <li><img src="./images/5.jpg" alt="青" width="640" height="595"></li>
+        <li><img src="./images/6.jpg" alt="蓝" width="640" height="595"></li>
+        <li><img src="./images/7.jpg" alt="紫" width="640" height="595"></li>
+        <li><img src="./images/8.jpg" alt="a" width="640" height="872"></li>
+        <li><img src="./images/9.jpg" alt="b" width="1024" height="1240"></li>
+        <li><img src="./images/10.jpg" alt="c" width="560" height="840"></li>
+        <li><img src="./images/11.jpg" alt="d" width="1439" height="1985"></li>
+        <li><img src="./images/12.jpg" alt="e" width="580" height="749"></li>
+    </ul>
+    <div class="console">
+        <span class="prev"></span>
+        <span class="next"></span>
+    </div>
+</div>
+<!--引入jquery-->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    var $li;
+    $li = $('#wrap ul li');
+    var index=0;
+    $li.click(function () {
+        index=$(this).index();
+        $li.each(function (idx) {
+            $(this).delay(idx*30).fadeOut(30);
+        });
+        $(this).fadeIn().animate({
+            width:"90%",
+            height:"90%",
+        },500);
+    });
+
+</script>
+</body>
+</html>

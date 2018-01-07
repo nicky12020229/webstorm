@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="Description" content="">
+    <title>立体旋转相册</title>
+    <style>
+        * {
+            margin: 0;
+            pddding: 0;
+
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+
+        }
+
+        #wrap {
+            width: 150px;
+            height: 200px;
+
+            margin: 150px auto;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-transform: rotateX(-10deg);
+            -moz-transform: rotateX(-10deg);
+            -ms-transform: rotateX(-10deg);
+            -o-transform: rotateX(-10deg);
+            transform: rotateX(-10deg);
+            position: relative;
+         
+            
+        }
+
+        #perspective {
+            transform-style: preserve-3d;
+            -webkit-perspective: 600px;
+            -moz-perspective: 600px;
+            -ms-perspective: 600px;
+            perspective: 600px;
+        }
+
+        #wrap img {
+            width: 150px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            border:1px solid #dfefff;
+           -webkit-box-reflect: below 5px -webkit-linear-gradient( top ,rgba(0,0,0,0)40% ,rgba(0,0,0,0.5)100%);
+
+        }
+    </style>
+</head>
+<body>
+<div id="perspective">
+    <div id="wrap">
+        <img src="./images/1.jpg" alt="红" width="400" height="372">
+        <img src="./images/2.jpg" alt="黄" width="640" height="769">
+        <img src="./images/3.jpg" alt="蓝" width="600" height="900">
+        <img src="./images/4.jpg" alt="绿" width="798" height="1200">
+        <img src="./images/5.jpg" alt="青" width="640" height="595">
+        <img src="./images/6.jpg" alt="蓝" width="640" height="595">
+        <img src="./images/7.jpg" alt="紫" width="640" height="595">
+        <img src="./images/8.jpg" alt="a" width="640" height="872">
+        <img src="./images/9.jpg" alt="b" width="1024" height="1240">
+        <img src="./images/10.jpg" alt="c" width="560" height="840">
+        <img src="./images/11.jpg" alt="d" width="1439" height="1985">
+    </div>
+</div>
+<script>
+    /*需求分析：1、所有图片旋转一定角度。
+    2、鼠标移动整个图片移动
+    按下 移动 松开
+    找到旋转度数与鼠标移动距离
+    移动的度数 鼠标移动当前与上次的距离差
+    当前坐标 上次  差
+    3、鼠标松开惯性，度数的变化，差在T内慢慢变小，到某一程度就停止
+    */
+    var oImg = document.getElementsByTagName("img");
+    var nowX, nowY, lastX, lastY, minX, minY, roX = -10, roY = 0, timer = null;
+    var oWrap = document.getElementById("wrap");
+    (function (i) {
+        var len = oImg.length;
+        var deg = 360 / len;
+        for (; i < len; i++) {
+            oImg[i].style.transform = "rotateY(" + deg * i + "deg) translateZ(350px)";
+        }
+    })(0);
+
+    //鼠标移动
+    document.onmousedown = function (e) {
+        var e = window.event;
+        console.log(e.clientX, e.clientY);
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        this.onmousemove = function (e) {
+
+            nowX = e.clientX;
+            nowY = e.clientY;
+
+            minX = nowX - lastX;
+            minY = nowY - lastY;
+            console.log(minX, minY);
+
+            roX -= minY * 0.08;
+            roY += minX * 0.09;
+            oWrap.style.transform = "rotateX(" + roX + "deg) rotateY(" + roY + "deg)  ";
+            lastX = nowX;
+            lastY = nowY;
+        }
+        this.onmouseup = function () {
+            this.onmousemove = null;
+            timer = setInterval(function () {
+                minX *= 0.95;
+                minY *= 0.95;
+                roX -= minY * 0.05;
+                roY += minX * 0.05;
+                oWrap.style.transform = "rotateX(" + roX + "deg) rotateY(" + roY + "deg)  ";
+                if (Math.abs(minX) < 0.1 || Math.abs(minY) < 0.1) {
+                    clearInterval(timer);
+                }
+            }, 33)
+
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nav</title>
+</head>
+<body>
+<button name="myBtn" value="click" onclick="getPosition()">click me!</button>
+<p id="show"></p>
+<script>
+    function    getPosition(){
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition,showErr);
+        }
+        else{document.getElementById("show").innerHTML="cuo";
+        }
+    }
+    function    showPosition(position){
+        document.getElementById("show").innerHTML="latitude:"+position.coords.latitude+"<br>"+"longitude:"+positoion.coords.longitude;
+
+    }
+function showErr(error){
+    switch(error.code){
+        case error.PERMI;SSION_DENIED:document.getElementById("show").innerHTML="ju jue" ;break;
+        case error.POSITION_UNAVAILABLE:document.getElementById("show").innerHTML="bukeyong" ;break;
+
+    }
+}
+</script>
+</body>
+</html>

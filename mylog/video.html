@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <style>
+        video{
+border:5px solid #12bac7;
+
+        }
+        #div1{
+            position:relative;
+         background-color:#d2c3ee;
+        }
+        #div2{border:1px solid red;
+            position: absolute;
+            left:1150px;
+            top:50px;
+        }
+        #div3{
+            background-color: #76737D;
+        }
+        button{
+            font:italic bold 12px/30px Georgia,serif;
+            display: inline-block;
+            width:50px;
+            height:50px;
+        }
+        audio{
+            width:600px;
+            height:100px;
+        }
+        a{
+            display: block;
+            height:30px;
+            width: 300px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align:center;" id="div1">
+
+    <video  id="video1"  width="300px" height="400px"  loop controls>
+
+        <source src="./videos/ceshi.mov" type="video/quicktime">
+        <source src="./videos/ceshi.mov" type="video/ogg">
+        <source src="./videos/ceshi.mov" type="video/webm">
+        不支持插件
+
+    </video>
+<div id="div2">
+    <button id="myBtn1"  onclick="makeBig()">big</button>
+    <button id="myBtn2"  onclick="makeSmall()">small</button></div>
+    <div id="div3">
+        <p style="font:italic bold 44px/30px Georgia,serif">调用测试</p>
+        <audio  controls autoplay>
+        <source src="./musics/ceshi.mp3" type="audio/mpeg">
+        <source src="./musics/ceshi.mp3" type="audio/ogg">
+        <source src="./musics/ceshi.mp3" type="audio/">
+        不支持插件
+        </audio>
+        <a href="./musics/ceshi.mp3">play the music</a>
+    </div>
+</div>
+
+<script src="http://mediaplayer.yahoo.com/latest">
+    var my=document.getElementById("video1");
+var width = 80;
+    function playPause() {
+        if(my.paused){
+            my.play();
+        }else{
+            my.pause();
+        }
+
+    }
+    function    makeBig() {
+
+
+            width+=10;
+
+        my.style.width=""+width+"px";
+
+    }
+    function makeSmall() {
+        width-=10;
+
+        my.style.width=""+width+"px";
+    }
+</script>
+</body>
+</html>

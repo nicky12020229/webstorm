@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web存储</title>
+
+</head>
+<body>
+<div id="show">123
+</div>
+<button id="click" type="button" onclick="clickcounter()">click</button>
+<button id="reset" onclick="reset()">reset</button>
+<script>
+    function clickcounter()
+    {
+        if (typeof(Storage) !== "undefined")
+        {
+            if (localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+
+            }
+            else {
+                localStorage.clickcount = 1;
+
+
+            }
+            document.getElementById("show").innerHTML = "点击了：" + localStorage.clickcount;
+        }
+        else {
+            document.getElementById("show").innerHTML = "不支持";
+
+        }
+    }
+function reset() {
+        localStorage.clear();
+
+}
+//    /*判断浏览器是否支持该特性*/
+//    if(!window.localStorage){
+//        alert("浏览器不支持localstorage");
+//        return false;
+//    }else{
+//        /*可以简单模拟成前端的数据库，实现增删改查的功能*/
+//        //增，即给全局变量赋值
+//        var storage = window.localStorage;
+//        storage.a = 1;
+//        storage["b"] = 2;
+//        storage.setItem("data","i am jsonData");
+//
+//        //查，取得变量的值
+//        var data = storage.getItem("data");
+//        console.log(data);
+//
+//        //删，移除存储里的值
+//        //storage.clear()清空所有
+//        storage.removeItem("a");
+//
+//        //改，即重新给变量赋值
+//        storage.setItem("b","again data");
+//
+//    }
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试HTML5</title>
+    <style>
+        #grad1 {
+            height: 200px;
+            background: linear-gradient(red, blue); /* Safari 5.1 - 6.0 */
+
+        }
+        img {
+            -webkit-box-reflect: below 3px -webkit-linear-gradient(top,rgba(0,0,0,0)40%,rgba(0,0,0,0.5) 100%);
+
+        }
+        #myc    {
+            width:100%;
+            height:1000px;
+            background:#dfefff;
+            margin:0 auto;
+        }
+div#div1,#div2{
+    border:1px solid red;
+    width:400px;
+    height:400px;
+    display:inline-block;;
+
+}
+        div#div1 img{
+            width:200px;
+            height:200px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" ondrop="mydrop(event)" ondragover="allowdrop(event)" >
+    
+</div>
+<img src="./images/1.jpg" alt=""  ondragstart="mydrag(event)" draggable="true" id="drag1">
+<div id="div2" ondrop="mydrop(event)" ondragover="allowdrop(event)"></div>
+<p draggable="true" id="a1" ondragstart="mydrag(event)">hello</p>
+<canvas id="myc">
+
+
+</canvas>
+
+
+
+<script>
+    var c=document.getElementById("myc");
+    var ctx=c.getContext("2d");
+//    ctx.fillStyle="white";ctx.fillRect(55,55,100,50);
+//    ctx.moveTo(55,55);
+//    ctx.lineTo(155,105);
+//    ctx.strokeStyle="red";ctx.stroke();
+//
+//
+//    ctx.beginPath();
+//    ctx.arc(55,55,10,0.5*Math.PI,2*Math.PI);
+//    ctx.stroke();
+//
+//    ctx.moveTo(0,0);
+//    ctx.lineTo(100,0);
+//    ctx.arcTo(110,10,110,20,3);
+//    ctx.stroke();
+//
+//    ctx.fillStyle="red";
+//    ctx.font="30px Arial";
+//    ctx.strokeText("绘制文本hello",10,100);
+//    ctx.fillText("填充文本hello",100,50);
+    //渐变图形
+//    var grad=ctx.createLinearGradient(0,0,100,0);
+//    grad.addColorStop(0,"red");
+//    grad.addColorStop(1,"blue");
+//    ctx.fillStyle=grad;
+//    ctx.fillRect(10,10,200,200);
+//    var gradc=ctx.createRadialGradient(55,55,4,55,55,47);
+//    gradc.addColorStop(0,"red");
+//    gradc.addColorStop(1,"white");
+//    ctx.fillStyle=gradc;
+////    ctx.fillRect(0,0,110,110);
+//    ctx.beginPath();
+//       ctx.arc(125,65,60,0,2*Math.PI);
+//       ctx.fill();
+    //图像放置画布上
+//    var img=document.getElementById("mypic");
+//    img.onload=function () {ctx.drawImage(img,100,10,100,200);
+//
+//    };
+    //拖拽
+    function allowdrop(event) {event.preventDefault();
+
+    }
+    function mydrag(event) {event.dataTransfer.setData("Text","drag1");
+
+    }
+    function mydrop(event){event.preventDefault();
+    var data=event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+
+    }
+
+</script>
+</body>
+</html>
